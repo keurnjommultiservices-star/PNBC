@@ -1,1 +1,1 @@
-
+module.exports = function (eleventyConfig) { eleventyConfig.addPassthroughCopy("images"); eleventyConfig.addPassthroughCopy({ "src/styles.css": "styles.css" }); eleventyConfig.addPassthroughCopy({ "src/app.js": "app.js" }); eleventyConfig.addPassthroughCopy("admin"); eleventyConfig.addFilter("initials", (name) => { if (!name) return "?"; return name.split(" ").map((w) => w[0]).filter(Boolean).slice(0, 2).join("").toUpperCase(); }); return { dir: { input: "src", output: "_site", includes: "_includes", data: "_data" } }; };
