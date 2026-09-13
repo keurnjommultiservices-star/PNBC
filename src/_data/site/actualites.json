@@ -1,13 +1,13 @@
 {
-  "meta_title": "Actualités — PNBC",
+  "home_view_all": "Voir toutes les actualités",
+  "page_title": "Actualités",
+  "page_subtitle": "Toute la vie du club : matchs, entraînements, événements et temps forts.",
+  "home_empty": "2éme edition Tournoi des Academies : du 11 Septembre au 14 Septembre2026 à Popenguine - Orana",
+  "back_link": "Retour aux actualités",
   "nav_label": "Actualités",
   "home_title": "Actualités du club",
   "home_subtitle": "Matchs, entraînements et temps forts du PNBC.",
-  "home_empty": "Aucune actualité publiée pour le moment.",
-  "home_view_all": "Voir toutes les actualités",
-  "read_more": "Lire la suite",
-  "page_title": "Actualités",
-  "page_subtitle": "Toute la vie du club : matchs, entraînements, événements et temps forts.",
   "page_empty": "Aucune actualité publiée pour le moment.",
-  "back_link": "Retour aux actualités"
+  "read_more": "Lire la suite",
+  "meta_title": "Actualités — PNBC"
 }
