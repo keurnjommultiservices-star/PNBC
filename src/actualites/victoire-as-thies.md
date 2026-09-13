@@ -1,8 +1,9 @@
 ---
 layout: actu.njk
-title: "Victoire face à l'AS Thiès"
-date: 2026-08-12
-resume: "Le PNBC s'impose 68 à 61 face à l'AS Thiès dans un match disputé jusqu'au buzzer."
+title: Victoire face à l'AS Thiès
+date: 2026-09-13
+resume: Le PNBC s'impose 68 à 61 face à l'AS Thiès dans un match disputé
+  jusqu'au buzzer.
 photo_couverture: ""
 photos: []
 ---
