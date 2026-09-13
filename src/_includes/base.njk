@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ title or "PNBC — Popenguine Ndayane Basket Club" }}</title>
+<title>{{ title or site.general.meta_title }}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,13 +14,13 @@
 <header>
   <nav class="wrap">
     <div class="brand">
-      <div class="brand-mark">P</div>
-      <div class="brand-name">PNBC<small>Popenguine Ndayane Basket Club</small></div>
+      <div class="brand-mark">{{ site.general.brand.name | first }}</div>
+      <div class="brand-name">{{ site.general.brand.name }}<small>{{ site.general.brand.tagline }}</small></div>
     </div>
     <ul>
-      <li><a href="/#club">Le club</a></li>
-      <li><a href="/#effectif">Effectif</a></li>
-      <li><a href="/#acces">Accès partenaire</a></li>
+      <li><a href="/#club">{{ site.general.nav.club }}</a></li>
+      <li><a href="/#effectif">{{ site.general.nav.effectif }}</a></li>
+      <li><a href="/#acces">{{ site.general.nav.acces }}</a></li>
     </ul>
   </nav>
 </header>
@@ -29,12 +29,27 @@
 
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
-    <span>PNBC — Popenguine Ndayane Basket Club, Mbour, Sénégal</span>
-    <a href="/admin/">Administration</a>
+    <span>{{ site.general.footer.text }}</span>
+    <a href="/admin/">{{ site.general.footer.admin_label }}</a>
   </div>
 </footer>
 
 <script src="/app.js"></script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> <script> if (window.netlifyIdentity) { window.netlifyIdentity.on("init", (user) => { if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); } }); } if (location.hash && (location.hash.includes("invite_token") || location.hash.includes("recovery_token") || location.hash.includes("confirmation_token"))) { location.href = "/admin/" + location.hash; } </script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+  // Redirige les liens d'invitation / réinitialisation vers /admin, où le CMS gère la fenêtre Identity
+  if (location.hash && (location.hash.includes("invite_token") || location.hash.includes("recovery_token") || location.hash.includes("confirmation_token"))) {
+    location.href = "/admin/" + location.hash;
+  }
+</script>
 </body>
 </html>

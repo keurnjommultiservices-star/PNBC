@@ -9,7 +9,7 @@ eleventyComputed:
   title: "{{ p.name }} — PNBC"
 ---
 <div class="wrap overlay-body" style="padding-top:56px;">
-  <a href="/#effectif" class="back-btn" style="display:inline-block; margin-bottom:32px;">&larr; Retour à l'effectif</a>
+  <a href="/#effectif" class="back-btn" style="display:inline-block; margin-bottom:32px;">&larr; {{ site.player_page.back_link }}</a>
 
   <div class="profile-head">
     <div class="profile-photo">
@@ -24,44 +24,44 @@ eleventyComputed:
         <span class="tag">{{ p.age }}</span>
       </div>
       <div class="profile-quick">
-        <div><div class="qk-label">Club actuel</div><div class="qk-val">PNBC</div></div>
-        <div><div class="qk-label">Poste</div><div class="qk-val">{{ p.poste or "–" }}</div></div>
-        <div><div class="qk-label">Taille</div><div class="qk-val">{{ p.taille or "–" }}</div></div>
+        <div><div class="qk-label">{{ site.player_page.current_club_label }}</div><div class="qk-val">{{ site.player_page.current_club_value }}</div></div>
+        <div><div class="qk-label">{{ site.player_page.poste_label }}</div><div class="qk-val">{{ p.poste or "–" }}</div></div>
+        <div><div class="qk-label">{{ site.player_page.taille_label }}</div><div class="qk-val">{{ p.taille or "–" }}</div></div>
       </div>
     </div>
   </div>
 
   <div class="profile-section">
-    <h3>Historique clubs</h3>
+    <h3>{{ site.player_page.clubs_title }}</h3>
     <table class="history">
-      <tr><th>Période</th><th>Club</th><th>Détail</th></tr>
-      {% if p.clubs.length == 0 %}<tr><td colspan="3" style="color:var(--wood);">Aucun historique renseigné.</td></tr>{% endif %}
+      <tr><th>{{ site.player_page.clubs_th_periode }}</th><th>{{ site.player_page.clubs_th_club }}</th><th>{{ site.player_page.clubs_th_detail }}</th></tr>
+      {% if p.clubs.length == 0 %}<tr><td colspan="3" style="color:var(--wood);">{{ site.player_page.clubs_empty }}</td></tr>{% endif %}
       {% for c in p.clubs %}<tr><td>{{ c.periode }}</td><td>{{ c.club }}</td><td>{{ c.detail }}</td></tr>{% endfor %}
     </table>
   </div>
 
   <div class="profile-section">
-    <h3>Matchs récents</h3>
+    <h3>{{ site.player_page.matches_title }}</h3>
     <table class="history">
-      <tr><th>Date</th><th>Adversaire</th><th>Score</th><th>Statistiques</th></tr>
-      {% if p.matches.length == 0 %}<tr><td colspan="4" style="color:var(--wood);">Aucun match renseigné.</td></tr>{% endif %}
+      <tr><th>{{ site.player_page.matches_th_date }}</th><th>{{ site.player_page.matches_th_adversaire }}</th><th>{{ site.player_page.matches_th_score }}</th><th>{{ site.player_page.matches_th_stats }}</th></tr>
+      {% if p.matches.length == 0 %}<tr><td colspan="4" style="color:var(--wood);">{{ site.player_page.matches_empty }}</td></tr>{% endif %}
       {% for m in p.matches %}<tr><td>{{ m.date }}</td><td>{{ m.adversaire }}</td><td>{{ m.score }}</td><td>{{ m.pts }}</td></tr>{% endfor %}
     </table>
   </div>
 
   <div class="profile-section">
-    <h3>Vidéos</h3>
+    <h3>{{ site.player_page.videos_title }}</h3>
 
     <div id="videoLock" class="lock">
-      <p>Les vidéos de {{ p.name }} sont réservées aux clubs partenaires. Saisissez le code transmis par le PNBC pour les débloquer.</p>
-      <div class="lock-error" id="lockError">Code incorrect. Réessayez.</div>
-      <input type="text" id="codeInput" placeholder="Code d'accès">
-      <button class="btn btn-primary" onclick="tryUnlockVideos()">Débloquer</button>
+      <p>{{ site.player_page.videos_lock_text | replace("{nom}", p.name) }}</p>
+      <div class="lock-error" id="lockError">{{ site.player_page.videos_lock_error }}</div>
+      <input type="text" id="codeInput" placeholder="{{ site.player_page.videos_lock_placeholder }}">
+      <button class="btn btn-primary" onclick="tryUnlockVideos()">{{ site.player_page.videos_lock_btn }}</button>
     </div>
 
     <div id="videoContent" style="display:none;">
       {% if p.videos.length == 0 %}
-        <p style="color:var(--wood); font-size:14px;">Aucune vidéo n'a encore été ajoutée pour ce joueur.</p>
+        <p style="color:var(--wood); font-size:14px;">{{ site.player_page.videos_empty }}</p>
       {% else %}
         <div class="video-grid">
           {% for v in p.videos %}

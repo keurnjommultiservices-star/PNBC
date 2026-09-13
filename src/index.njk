@@ -9,12 +9,12 @@ title: PNBC — Popenguine Ndayane Basket Club
     <line x1="330" y1="-90" x2="330" y2="230" stroke="#F3EAD9" stroke-width="1"/>
   </svg>
   <div class="wrap hero-inner">
-    <span class="hero-kicker">Mbour — Popenguine-Ndayane, Sénégal</span>
-    <h1>Nos joueurs, <span>visibles</span> où que vous soyez.</h1>
-    <p>Le PNBC présente son effectif aux clubs partenaires : profils détaillés, historique et vidéos de matchs, consultables à distance depuis un lien privé.</p>
+    <span class="hero-kicker">{{ site.hero.kicker }}</span>
+    <h1>{{ site.hero.title_before }}<span>{{ site.hero.title_highlight }}</span>{{ site.hero.title_after }}</h1>
+    <p>{{ site.hero.text }}</p>
     <div class="hero-actions">
-      <a href="#effectif" class="btn btn-primary">Voir l'effectif</a>
-      <a href="#acces" class="btn btn-outline">Accès club partenaire</a>
+      <a href="#effectif" class="btn btn-primary">{{ site.hero.btn_primary }}</a>
+      <a href="#acces" class="btn btn-outline">{{ site.hero.btn_outline }}</a>
     </div>
   </div>
 </section>
@@ -22,16 +22,16 @@ title: PNBC — Popenguine Ndayane Basket Club
 <section class="about" id="club">
   <div class="wrap about-grid">
     <div>
-      <h2 style="font-size:32px; margin-bottom:20px;">Le club</h2>
-      <p>Basé à Popenguine-Ndayane, dans la commune de Mbour, le PNBC forme et fait progresser des joueurs de basket-ball sur la Petite Côte sénégalaise.</p>
-      <p>Ce site permet aux clubs et recruteurs étrangers de suivre nos joueurs à distance : parcours, statistiques et séquences vidéo, réunis dans un profil consultable en ligne.</p>
+      <h2 style="font-size:32px; margin-bottom:20px;">{{ site.about.title }}</h2>
+      <p>{{ site.about.text1 }}</p>
+      <p>{{ site.about.text2 }}</p>
       <div class="stat-row">
-        <div><div class="stat-num">01</div><div class="stat-label">Club — Mbour, Sénégal</div></div>
-        <div><div class="stat-num">{{ players.length }}</div><div class="stat-label">Joueurs présentés</div></div>
+        <div><div class="stat-num">01</div><div class="stat-label">{{ site.about.stat1_label }}</div></div>
+        <div><div class="stat-num">{{ players.length }}</div><div class="stat-label">{{ site.about.stat2_label }}</div></div>
       </div>
     </div>
     <div>
-      <p style="color:rgba(243,234,217,0.82); font-size:15.5px;">Chaque profil joueur réunit ce qu'un club a besoin de voir avant un premier contact : taille et poste, clubs précédents, matchs récents, et des vidéos accessibles uniquement via un code privé partagé par le PNBC.</p>
+      <p style="color:rgba(243,234,217,0.82); font-size:15.5px;">{{ site.about.side_text }}</p>
     </div>
   </div>
 </section>
@@ -39,14 +39,14 @@ title: PNBC — Popenguine Ndayane Basket Club
 <section id="effectif">
   <div class="wrap">
     <div class="section-head">
-      <h2>L'effectif</h2>
-      <p>Cliquez sur un joueur pour ouvrir son profil complet.</p>
+      <h2>{{ site.roster.title }}</h2>
+      <p>{{ site.roster.subtitle }}</p>
     </div>
   </div>
   <div class="wrap" style="padding:0 28px;">
     <div class="roster-grid">
       {% if players.length == 0 %}
-        <p style="padding:24px; color:var(--wood);">Aucun joueur publié pour le moment.</p>
+        <p style="padding:24px; color:var(--wood);">{{ site.roster.empty }}</p>
       {% endif %}
       {% for p in players %}
       <a href="/joueurs/{{ p.slug }}/" class="player-card" style="text-decoration:none; color:inherit; display:block;">
@@ -56,7 +56,7 @@ title: PNBC — Popenguine Ndayane Basket Club
         </div>
         <div class="player-name">{{ p.name }}</div>
         <div class="player-meta">{{ p.poste }} · {{ p.taille }}</div>
-        <span class="player-link">Voir le profil &rarr;</span>
+        <span class="player-link">{{ site.roster.link_label }} &rarr;</span>
       </a>
       {% endfor %}
     </div>
@@ -67,10 +67,10 @@ title: PNBC — Popenguine Ndayane Basket Club
   <div class="wrap">
     <div class="access">
       <div>
-        <h3>Accès club partenaire</h3>
-        <p>Un lien et un code d'accès privés sont transmis au club étranger intéressé. Ce code ouvre les vidéos de chaque joueur.</p>
+        <h3>{{ site.access.title }}</h3>
+        <p>{{ site.access.text }}</p>
       </div>
-      <a href="#effectif" class="btn btn-primary">Tester l'accès sur un profil</a>
+      <a href="#effectif" class="btn btn-primary">{{ site.access.btn }}</a>
     </div>
   </div>
 </section>

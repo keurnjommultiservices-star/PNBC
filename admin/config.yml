@@ -48,6 +48,103 @@ collections:
           - { label: "Titre", name: "label", widget: "string" }
           - { label: "Lien (YouTube ou fichier vidéo)", name: "url", widget: "string" }
 
+  - name: "site"
+    label: "Contenu du site"
+    files:
+      - name: "general"
+        label: "Général (menu, pied de page, titre)"
+        file: "src/_data/site/general.json"
+        fields:
+          - { label: "Titre du site (onglet navigateur)", name: "meta_title", widget: "string" }
+          - label: "Logo / nom du club"
+            name: "brand"
+            widget: "object"
+            fields:
+              - { label: "Nom court (ex. PNBC)", name: "name", widget: "string" }
+              - { label: "Sous-titre", name: "tagline", widget: "string" }
+          - label: "Menu de navigation"
+            name: "nav"
+            widget: "object"
+            fields:
+              - { label: "Lien 1", name: "club", widget: "string" }
+              - { label: "Lien 2", name: "effectif", widget: "string" }
+              - { label: "Lien 3", name: "acces", widget: "string" }
+          - label: "Pied de page"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Texte", name: "text", widget: "string" }
+              - { label: "Lien administration", name: "admin_label", widget: "string" }
+      - name: "hero"
+        label: "Page d'accueil — Bandeau du haut"
+        file: "src/_data/site/hero.json"
+        fields:
+          - { label: "Petit texte au-dessus du titre", name: "kicker", widget: "string" }
+          - { label: "Titre — début", name: "title_before", widget: "string" }
+          - { label: "Titre — mot en couleur", name: "title_highlight", widget: "string" }
+          - { label: "Titre — fin", name: "title_after", widget: "string" }
+          - { label: "Paragraphe", name: "text", widget: "text" }
+          - { label: "Bouton 1", name: "btn_primary", widget: "string" }
+          - { label: "Bouton 2", name: "btn_outline", widget: "string" }
+      - name: "about"
+        label: "Page d'accueil — Section Le club"
+        file: "src/_data/site/about.json"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Paragraphe 1", name: "text1", widget: "text" }
+          - { label: "Paragraphe 2", name: "text2", widget: "text" }
+          - { label: "Paragraphe (colonne de droite)", name: "side_text", widget: "text" }
+          - { label: "Légende chiffre 1", name: "stat1_label", widget: "string" }
+          - { label: "Légende chiffre 2", name: "stat2_label", widget: "string" }
+      - name: "roster"
+        label: "Page d'accueil — Section Effectif"
+        file: "src/_data/site/roster.json"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Sous-titre", name: "subtitle", widget: "string" }
+          - { label: "Message si aucun joueur", name: "empty", widget: "string" }
+          - { label: "Texte du lien sur chaque joueur", name: "link_label", widget: "string" }
+      - name: "access"
+        label: "Page d'accueil — Section Accès partenaire"
+        file: "src/_data/site/access.json"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Texte", name: "text", widget: "text" }
+          - { label: "Bouton", name: "btn", widget: "string" }
+      - name: "player_page"
+        label: "Page profil joueur — Textes fixes"
+        file: "src/_data/site/player_page.json"
+        fields:
+          - { label: "Lien retour", name: "back_link", widget: "string" }
+          - { label: "Label \"Club actuel\"", name: "current_club_label", widget: "string" }
+          - { label: "Valeur \"Club actuel\"", name: "current_club_value", widget: "string" }
+          - { label: "Label \"Poste\"", name: "poste_label", widget: "string" }
+          - { label: "Label \"Taille\"", name: "taille_label", widget: "string" }
+          - { label: "Titre tableau historique", name: "clubs_title", widget: "string" }
+          - { label: "Colonne \"Période\"", name: "clubs_th_periode", widget: "string" }
+          - { label: "Colonne \"Club\"", name: "clubs_th_club", widget: "string" }
+          - { label: "Colonne \"Détail\"", name: "clubs_th_detail", widget: "string" }
+          - { label: "Message si aucun historique", name: "clubs_empty", widget: "string" }
+          - { label: "Titre tableau matchs", name: "matches_title", widget: "string" }
+          - { label: "Colonne \"Date\"", name: "matches_th_date", widget: "string" }
+          - { label: "Colonne \"Adversaire\"", name: "matches_th_adversaire", widget: "string" }
+          - { label: "Colonne \"Score\"", name: "matches_th_score", widget: "string" }
+          - { label: "Colonne \"Statistiques\"", name: "matches_th_stats", widget: "string" }
+          - { label: "Message si aucun match", name: "matches_empty", widget: "string" }
+          - { label: "Titre section vidéos", name: "videos_title", widget: "string" }
+          - { label: "Texte du cadenas (utilisez {nom} pour le nom du joueur)", name: "videos_lock_text", widget: "text" }
+          - { label: "Message code incorrect", name: "videos_lock_error", widget: "string" }
+          - { label: "Texte dans le champ code", name: "videos_lock_placeholder", widget: "string" }
+          - { label: "Bouton déblocage", name: "videos_lock_btn", widget: "string" }
+          - { label: "Message si aucune vidéo", name: "videos_empty", widget: "string" }
+      - name: "notfound"
+        label: "Page 404"
+        file: "src/_data/site/notfound.json"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Texte", name: "text", widget: "string" }
+          - { label: "Bouton", name: "btn", widget: "string" }
+
   - name: "settings"
     label: "Réglages"
     files:
