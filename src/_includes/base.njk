@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title or "PNBC — Popenguine Ndayane Basket Club" }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <div class="brand-mark">P</div>
+      <div class="brand-name">PNBC<small>Popenguine Ndayane Basket Club</small></div>
+    </div>
+    <ul>
+      <li><a href="/#club">Le club</a></li>
+      <li><a href="/#effectif">Effectif</a></li>
+      <li><a href="/#acces">Accès partenaire</a></li>
+    </ul>
+  </nav>
+</header>
+
+{{ content | safe }}
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:12px;">
+    <span>PNBC — Popenguine Ndayane Basket Club, Mbour, Sénégal</span>
+    <a href="/admin/">Administration</a>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

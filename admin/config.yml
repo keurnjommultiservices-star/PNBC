@@ -1,0 +1,61 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/players"
+public_folder: "/images/players"
+
+locale: "fr"
+
+collections:
+  - name: "players"
+    label: "Joueurs"
+    label_singular: "Joueur"
+    folder: "src/_data/players-src"
+    create: true
+    slug: "{{fields.name}}"
+    format: "json"
+    identifier_field: "name"
+    fields:
+      - { label: "Numéro", name: "num", widget: "string", required: false }
+      - { label: "Nom complet", name: "name", widget: "string" }
+      - { label: "Poste", name: "poste", widget: "string", required: false }
+      - { label: "Taille", name: "taille", widget: "string", required: false }
+      - { label: "Âge", name: "age", widget: "string", required: false }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - label: "Historique clubs"
+        name: "clubs"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Période", name: "periode", widget: "string" }
+          - { label: "Club", name: "club", widget: "string" }
+          - { label: "Détail", name: "detail", widget: "string", required: false }
+      - label: "Matchs récents"
+        name: "matches"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Date", name: "date", widget: "string" }
+          - { label: "Adversaire", name: "adversaire", widget: "string" }
+          - { label: "Score", name: "score", widget: "string" }
+          - { label: "Statistiques", name: "pts", widget: "string", required: false }
+      - label: "Vidéos"
+        name: "videos"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Titre", name: "label", widget: "string" }
+          - { label: "Lien (YouTube ou fichier vidéo)", name: "url", widget: "string" }
+
+  - name: "settings"
+    label: "Réglages"
+    files:
+      - name: "acces"
+        label: "Accès club partenaire"
+        file: "src/_data/settings.json"
+        fields:
+          - label: "Code d'accès club partenaire"
+            name: "access_code"
+            widget: "string"
+            hint: "Ce code unique est à transmettre au club étranger. Il débloque les vidéos de tous les joueurs."
