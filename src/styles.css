@@ -133,3 +133,25 @@ table.history td{padding:12px; border-bottom:1px solid var(--line); color:rgba(2
   nav ul{display:none;}
   .field-grid{grid-template-columns:1fr;}
 }
+
+/* Actualités */
+.actu-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; margin-top:8px;}
+.actu-card{display:block; text-decoration:none; color:inherit; background:var(--navy-card); border:1px solid var(--line); transition:transform .15s;}
+.actu-card:hover{transform:translateY(-3px);}
+.actu-card-photo{aspect-ratio:16/9; background:linear-gradient(160deg,#1B2E44,#0E1B2B); overflow:hidden;}
+.actu-card-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+.actu-card-body{padding:20px 22px 24px;}
+.actu-card-date{font-size:12px; color:var(--orange); font-weight:600; margin-bottom:8px;}
+.actu-card-title{font-size:18px; font-weight:700; margin-bottom:8px;}
+.actu-card-resume{color:var(--wood); font-size:14px; margin-bottom:16px; line-height:1.5;}
+
+.actu-detail{max-width:760px;}
+.actu-meta{font-size:13px; color:var(--orange); font-weight:600; margin-bottom:12px;}
+.actu-title{font-size:clamp(28px,4vw,42px); margin-bottom:28px;}
+.actu-cover{width:100%; aspect-ratio:16/9; overflow:hidden; margin-bottom:32px; border:1px solid var(--line);}
+.actu-cover img{width:100%; height:100%; object-fit:cover; display:block;}
+.actu-body{color:rgba(243,234,217,0.88); font-size:16px; line-height:1.75; margin-bottom:40px;}
+.actu-body p{margin-bottom:18px;}
+.actu-gallery{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px;}
+.actu-gallery-item img{width:100%; aspect-ratio:4/3; object-fit:cover; display:block; border:1px solid var(--line);}
+.actu-gallery-caption{font-size:12.5px; color:var(--wood); margin-top:6px;}

@@ -48,6 +48,31 @@ collections:
           - { label: "Titre", name: "label", widget: "string" }
           - { label: "Lien (YouTube ou fichier vidéo)", name: "url", widget: "string" }
 
+  - name: "actualites"
+    label: "Actualités"
+    label_singular: "Actualité"
+    folder: "src/actualites"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    identifier_field: "title"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Résumé (affiché sur les cartes)", name: "resume", widget: "text" }
+      - { label: "Photo de couverture", name: "photo_couverture", widget: "image", required: false, media_folder: "/images/actualites", public_folder: "/images/actualites" }
+      - label: "Galerie de photos"
+        name: "photos"
+        widget: "list"
+        required: false
+        media_folder: "/images/actualites"
+        public_folder: "/images/actualites"
+        fields:
+          - { label: "Photo", name: "image", widget: "image" }
+          - { label: "Légende", name: "legende", widget: "string", required: false }
+      - { label: "Texte de l'article", name: "body", widget: "markdown" }
+
   - name: "site"
     label: "Contenu du site"
     files:
@@ -137,6 +162,21 @@ collections:
           - { label: "Texte dans le champ code", name: "videos_lock_placeholder", widget: "string" }
           - { label: "Bouton déblocage", name: "videos_lock_btn", widget: "string" }
           - { label: "Message si aucune vidéo", name: "videos_empty", widget: "string" }
+      - name: "actualites_textes"
+        label: "Rubrique Actualités — Textes"
+        file: "src/_data/site/actualites.json"
+        fields:
+          - { label: "Titre de la page (onglet navigateur)", name: "meta_title", widget: "string" }
+          - { label: "Nom dans le menu", name: "nav_label", widget: "string" }
+          - { label: "Titre sur la page d'accueil", name: "home_title", widget: "string" }
+          - { label: "Sous-titre sur la page d'accueil", name: "home_subtitle", widget: "string" }
+          - { label: "Message si aucune actualité (accueil)", name: "home_empty", widget: "string" }
+          - { label: "Bouton \"voir toutes les actualités\"", name: "home_view_all", widget: "string" }
+          - { label: "Texte \"Lire la suite\"", name: "read_more", widget: "string" }
+          - { label: "Titre de la page /actualites/", name: "page_title", widget: "string" }
+          - { label: "Sous-titre de la page /actualites/", name: "page_subtitle", widget: "string" }
+          - { label: "Message si aucune actualité (page dédiée)", name: "page_empty", widget: "string" }
+          - { label: "Lien retour sur une page d'article", name: "back_link", widget: "string" }
       - name: "notfound"
         label: "Page 404"
         file: "src/_data/site/notfound.json"

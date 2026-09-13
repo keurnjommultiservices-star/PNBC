@@ -63,6 +63,38 @@ title: PNBC — Popenguine Ndayane Basket Club
   </div>
 </section>
 
+<section id="actualites">
+  <div class="wrap" style="padding:64px 28px;">
+    <div class="section-head">
+      <h2>{{ site.actualites.home_title }}</h2>
+      <p>{{ site.actualites.home_subtitle }}</p>
+    </div>
+    <div class="actu-grid">
+      {% if collections.actualites.length == 0 %}
+        <p style="padding:24px; color:var(--wood);">{{ site.actualites.home_empty }}</p>
+      {% endif %}
+      {% for actu in collections.actualites | slice(0, 3) %}
+      <a href="{{ actu.url }}" class="actu-card">
+        <div class="actu-card-photo">
+          {% if actu.data.photo_couverture %}<img src="{{ actu.data.photo_couverture }}" alt="{{ actu.data.title }}">{% endif %}
+        </div>
+        <div class="actu-card-body">
+          <div class="actu-card-date">{{ actu.data.date | dateFr }}</div>
+          <div class="actu-card-title">{{ actu.data.title }}</div>
+          <p class="actu-card-resume">{{ actu.data.resume }}</p>
+          <span class="player-link">{{ site.actualites.read_more }} &rarr;</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% if collections.actualites.length > 0 %}
+    <div style="margin-top:32px;">
+      <a href="/actualites/" class="btn btn-outline">{{ site.actualites.home_view_all }}</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
 <section id="acces">
   <div class="wrap">
     <div class="access">

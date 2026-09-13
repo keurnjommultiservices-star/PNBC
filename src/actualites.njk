@@ -1,0 +1,31 @@
+---
+layout: base.njk
+permalink: "/actualites/"
+eleventyComputed:
+  title: "{{ site.actualites.meta_title }}"
+---
+<div class="wrap" style="padding:64px 28px 100px;">
+  <div class="section-head">
+    <h2>{{ site.actualites.page_title }}</h2>
+    <p>{{ site.actualites.page_subtitle }}</p>
+  </div>
+
+  <div class="actu-grid">
+    {% if collections.actualites.length == 0 %}
+      <p style="padding:24px; color:var(--wood);">{{ site.actualites.page_empty }}</p>
+    {% endif %}
+    {% for actu in collections.actualites %}
+    <a href="{{ actu.url }}" class="actu-card">
+      <div class="actu-card-photo">
+        {% if actu.data.photo_couverture %}<img src="{{ actu.data.photo_couverture }}" alt="{{ actu.data.title }}">{% endif %}
+      </div>
+      <div class="actu-card-body">
+        <div class="actu-card-date">{{ actu.data.date | dateFr }}</div>
+        <div class="actu-card-title">{{ actu.data.title }}</div>
+        <p class="actu-card-resume">{{ actu.data.resume }}</p>
+        <span class="player-link">{{ site.actualites.read_more }} &rarr;</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
