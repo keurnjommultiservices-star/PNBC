@@ -1,0 +1,108 @@
+---
+layout: base.njk
+title: PNBC — Popenguine Ndayane Basket Club
+---
+<section class="hero">
+  <svg class="court-lines" viewBox="0 0 400 400" fill="none">
+    <circle cx="330" cy="70" r="160" stroke="#E8792E" stroke-width="1.5"/>
+    <circle cx="330" cy="70" r="60" stroke="#C9946B" stroke-width="1.5"/>
+    <line x1="330" y1="-90" x2="330" y2="230" stroke="#F3EAD9" stroke-width="1"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <span class="hero-kicker">{{ site.hero.kicker }}</span>
+    <h1>{{ site.hero.title_before }}<span>{{ site.hero.title_highlight }}</span>{{ site.hero.title_after }}</h1>
+    <p>{{ site.hero.text }}</p>
+    <div class="hero-actions">
+      <a href="#effectif" class="btn btn-primary">{{ site.hero.btn_primary }}</a>
+      <a href="#acces" class="btn btn-outline">{{ site.hero.btn_outline }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="club">
+  <div class="wrap about-grid">
+    <div>
+      <h2 style="font-size:32px; margin-bottom:20px;">{{ site.about.title }}</h2>
+      <p>{{ site.about.text1 }}</p>
+      <p>{{ site.about.text2 }}</p>
+      <div class="stat-row">
+        <div><div class="stat-num">01</div><div class="stat-label">{{ site.about.stat1_label }}</div></div>
+        <div><div class="stat-num">{{ players.length }}</div><div class="stat-label">{{ site.about.stat2_label }}</div></div>
+      </div>
+    </div>
+    <div>
+      <p style="color:rgba(243,234,217,0.82); font-size:15.5px;">{{ site.about.side_text }}</p>
+    </div>
+  </div>
+</section>
+
+<section id="effectif">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>{{ site.roster.title }}</h2>
+      <p>{{ site.roster.subtitle }}</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0 28px;">
+    <div class="roster-grid">
+      {% if players.length == 0 %}
+        <p style="padding:24px; color:var(--wood);">{{ site.roster.empty }}</p>
+      {% endif %}
+      {% for p in players %}
+      <a href="/joueurs/{{ p.slug }}/" class="player-card" style="text-decoration:none; color:inherit; display:block;">
+        <div class="player-num">#{{ p.num or "–" }}</div>
+        <div class="player-photo">
+          {% if p.photo %}<img src="{{ p.photo }}" alt="{{ p.name }}">{% else %}{{ p.name | initials }}{% endif %}
+        </div>
+        <div class="player-name">{{ p.name }}</div>
+        <div class="player-meta">{{ p.poste }} · {{ p.taille }}</div>
+        <span class="player-link">{{ site.roster.link_label }} &rarr;</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="actualites">
+  <div class="wrap" style="padding:64px 28px;">
+    <div class="section-head">
+      <h2>{{ site.actualites.home_title }}</h2>
+      <p>{{ site.actualites.home_subtitle }}</p>
+    </div>
+    <div class="actu-grid">
+      {% if collections.actualites.length == 0 %}
+        <p style="padding:24px; color:var(--wood);">{{ site.actualites.home_empty }}</p>
+      {% endif %}
+      {% for actu in collections.actualites | slice(0, 3) %}
+      <a href="{{ actu.url }}" class="actu-card">
+        <div class="actu-card-photo">
+          {% if actu.data.photo_couverture %}<img src="{{ actu.data.photo_couverture }}" alt="{{ actu.data.title }}">{% endif %}
+        </div>
+        <div class="actu-card-body">
+          <div class="actu-card-date">{{ actu.data.date | dateFr }}</div>
+          <div class="actu-card-title">{{ actu.data.title }}</div>
+          <p class="actu-card-resume">{{ actu.data.resume }}</p>
+          <span class="player-link">{{ site.actualites.read_more }} &rarr;</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% if collections.actualites.length > 0 %}
+    <div style="margin-top:32px;">
+      <a href="/actualites/" class="btn btn-outline">{{ site.actualites.home_view_all }}</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section id="acces">
+  <div class="wrap">
+    <div class="access">
+      <div>
+        <h3>{{ site.access.title }}</h3>
+        <p>{{ site.access.text }}</p>
+      </div>
+      <a href="#effectif" class="btn btn-primary">{{ site.access.btn }}</a>
+    </div>
+  </div>
+</section>

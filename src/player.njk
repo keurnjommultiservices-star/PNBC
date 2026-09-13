@@ -1,0 +1,118 @@
+---
+layout: base.njk
+pagination:
+  data: players
+  size: 1
+  alias: p
+permalink: "/joueurs/{{ p.slug }}/"
+eleventyComputed:
+  title: "{{ p.name }} — PNBC"
+---
+<div class="wrap overlay-body" style="padding-top:56px;">
+  <a href="/#effectif" class="back-btn" style="display:inline-block; margin-bottom:32px;">&larr; {{ site.player_page.back_link }}</a>
+
+  <div class="profile-head">
+    <div class="profile-photo">
+      {% if p.photo %}<img src="{{ p.photo }}" alt="{{ p.name }}">{% else %}{{ p.name | initials }}{% endif %}
+    </div>
+    <div>
+      <div class="profile-num">#{{ p.num or "–" }}</div>
+      <h2>{{ p.name }}</h2>
+      <div class="profile-tags">
+        <span class="tag">{{ p.poste }}</span>
+        <span class="tag">{{ p.taille }}</span>
+        <span class="tag">{{ p.age }}</span>
+      </div>
+      <div class="profile-quick">
+        <div><div class="qk-label">{{ site.player_page.current_club_label }}</div><div class="qk-val">{{ site.player_page.current_club_value }}</div></div>
+        <div><div class="qk-label">{{ site.player_page.poste_label }}</div><div class="qk-val">{{ p.poste or "–" }}</div></div>
+        <div><div class="qk-label">{{ site.player_page.taille_label }}</div><div class="qk-val">{{ p.taille or "–" }}</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-section">
+    <h3>{{ site.player_page.clubs_title }}</h3>
+    <table class="history">
+      <tr><th>{{ site.player_page.clubs_th_periode }}</th><th>{{ site.player_page.clubs_th_club }}</th><th>{{ site.player_page.clubs_th_detail }}</th></tr>
+      {% if p.clubs.length == 0 %}<tr><td colspan="3" style="color:var(--wood);">{{ site.player_page.clubs_empty }}</td></tr>{% endif %}
+      {% for c in p.clubs %}<tr><td>{{ c.periode }}</td><td>{{ c.club }}</td><td>{{ c.detail }}</td></tr>{% endfor %}
+    </table>
+  </div>
+
+  <div class="profile-section">
+    <h3>{{ site.player_page.matches_title }}</h3>
+    <table class="history">
+      <tr><th>{{ site.player_page.matches_th_date }}</th><th>{{ site.player_page.matches_th_adversaire }}</th><th>{{ site.player_page.matches_th_score }}</th><th>{{ site.player_page.matches_th_stats }}</th></tr>
+      {% if p.matches.length == 0 %}<tr><td colspan="4" style="color:var(--wood);">{{ site.player_page.matches_empty }}</td></tr>{% endif %}
+      {% for m in p.matches %}<tr><td>{{ m.date }}</td><td>{{ m.adversaire }}</td><td>{{ m.score }}</td><td>{{ m.pts }}</td></tr>{% endfor %}
+    </table>
+  </div>
+
+  <div class="profile-section">
+    <h3>{{ site.player_page.videos_title }}</h3>
+
+    <div id="videoLock" class="lock">
+      <p>{{ site.player_page.videos_lock_text | replace("{nom}", p.name) }}</p>
+      <div class="lock-error" id="lockError">{{ site.player_page.videos_lock_error }}</div>
+      <input type="text" id="codeInput" placeholder="{{ site.player_page.videos_lock_placeholder }}">
+      <button class="btn btn-primary" onclick="tryUnlockVideos()">{{ site.player_page.videos_lock_btn }}</button>
+    </div>
+
+    <div id="videoContent" style="display:none;">
+      {% if p.videos.length == 0 %}
+        <p style="color:var(--wood); font-size:14px;">{{ site.player_page.videos_empty }}</p>
+      {% else %}
+        <div class="video-grid">
+          {% for v in p.videos %}
+          <div class="video-card" data-url="{{ v.url }}">
+            <div class="video-embed"></div>
+            <div class="video-card-label">{{ v.label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  const PNBC_ACCESS_CODE = {{ settings.access_code | dump | safe }};
+
+  function renderVideoEmbeds(){
+    document.querySelectorAll('.video-card').forEach(card => {
+      const url = card.dataset.url || '';
+      const target = card.querySelector('.video-embed');
+      const yt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([\w-]{11})/);
+      if(yt){
+        target.innerHTML = `<iframe style="width:100%; aspect-ratio:16/9; border:0; display:block;" src="https://www.youtube.com/embed/${yt[1]}" allowfullscreen></iframe>`;
+      } else if(url){
+        target.innerHTML = `<video controls style="width:100%; aspect-ratio:16/9; background:#000; display:block;" src="${url}"></video>`;
+      } else {
+        target.innerHTML = `<div class="video-thumb"><div class="play-btn"></div></div>`;
+      }
+    });
+  }
+
+  function tryUnlockVideos(){
+    const val = document.getElementById('codeInput').value.trim();
+    if(val === PNBC_ACCESS_CODE){
+      document.getElementById('videoLock').style.display = 'none';
+      document.getElementById('videoContent').style.display = 'block';
+      renderVideoEmbeds();
+      sessionStorage.setItem('pnbc_access_code', val);
+    } else {
+      document.getElementById('lockError').classList.add('show');
+    }
+  }
+
+  // Débloque automatiquement si le code a déjà été saisi sur un autre profil dans cette session
+  (function(){
+    const saved = sessionStorage.getItem('pnbc_access_code');
+    if(saved === PNBC_ACCESS_CODE){
+      document.getElementById('videoLock').style.display = 'none';
+      document.getElementById('videoContent').style.display = 'block';
+      renderVideoEmbeds();
+    }
+  })();
+</script>
